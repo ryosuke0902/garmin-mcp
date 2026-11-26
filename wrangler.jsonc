@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "garmin-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  // Client ID Metadata Documents make the OAuth library fetch client-supplied URLs;
+  // this flag stops those fetches from reaching private addresses.
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  // No id needed: wrangler (4.45+) and the Deploy to Cloudflare button create the namespace on first deploy.
+  "kv_namespaces": [{ "binding": "OAUTH_KV","id": "17d0de2c318346a882b4c387d7636a0c" }],
+  "vars": {
+    // IANA time zone used for "today" and default date ranges, e.g. "Europe/London".
+    "TIMEZONE": "Asia/Tokyo"
+  },
+  "observability": { "enabled": true }
+  // Secrets (never put them here): GARMIN_API_KEY, LOGIN_PASSWORD. See README.
+}
